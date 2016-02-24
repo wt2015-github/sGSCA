@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>sGSCA by wt2015-github</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">sGSCA</h1>
+      <h2 class="project-tagline">Signature-based gene set co-expression analysis</h2>
+      <a href="https://github.com/wt2015-github/sGSCA" class="btn">View on GitHub</a>
+      <a href="https://github.com/wt2015-github/sGSCA/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/wt2015-github/sGSCA/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <p>R codes (Version 2013.4.5)</p>
+
+<p><a href="http://wt2015-github.github.io/sGSCA/">Homepage @ Github</a> | <a href="http://bioinfo.au.tsinghua.edu.cn/member/jgu/sGSCA/">Homepage @ Jin Gu's Lab</a> | <a href="https://github.com/wt2015-github/sGSCA">Source Code</a></p>
+
+<h2>
+<a id="introduction" class="anchor" href="#introduction" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Introduction</h2>
+
+<p>sGSCA uses sparse Canonical Correlation Analysis (sCCA) to calculate correlation between gene sets with the fold-change matrix and identify significantly correlated gene set pairs as well as inclusive signature genes.</p>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage</h2>
+
+<ul>
+<li>Main script <strong>main_sGSCA.R</strong> uses sCCA to calculate correlation between gene sets with the fold-change matrix, and uses gene permutation to get null distributions, outputs results and weight vectors u,v</li>
+</ul>
+
+<pre><code>source('main_sGSCA.R')
+main(perm=10, fc.file="./data_exp.gse22058/fc_matrix.txt", geneset.file="./data_exp.gse22058/geneset.new.txt", LM.filter=TRUE, LMgene.file="./data_exp.gse22058/ttest_genes.txt", ppi.file="./data_exp.gse22058/incorporated_gene_relations.txt")
+</code></pre>
+
+<ul>
+<li>Script <strong>get_size.signature.R</strong> extracts signature genes from outputs and gets the size and overlap information</li>
+<li>Script <strong>get_pvalue.R</strong> gets statistic significance from outputs, the same with the function "post" in the main script, used for integrating parallel null_GSCoL results in the end</li>
+</ul>
+
+<h2>
+<a id="arguments-in-the-main-script" class="anchor" href="#arguments-in-the-main-script" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Arguments in the main script</h2>
+
+<ul>
+<li>
+<strong>perm</strong>: number of permutation, set according to parallel computation</li>
+<li>  <strong>fc.file</strong>: fold-change matrix (or other expression profile), more samples are better</li>
+<li>  <strong>geneset.file</strong>: gene set matrix, row is gene, column is geneset, 0/1 represent containing relationship</li>
+<li>  <strong>LM.filter</strong>: TRUE or FALSE, filter genes according to Leterature Mining results or not</li>
+<li>  <strong>LMgene.file</strong>: gene filtering file, use gene names, so at least 2 columns (gene name colume and gene score column) with column names</li>
+<li>  <strong>ppi.file</strong>: ppi file with 3 columns, the third column is source</li>
+</ul>
+
+<h2>
+<a id="output-files" class="anchor" href="#output-files" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Output files</h2>
+
+<ul>
+<li>
+<strong>geneset_filtered.txt</strong>: geneset after filtering with expression data </li>
+<li>  <strong>geneset_pair.txt</strong>: candidate geneset pairs</li>
+<li>  <strong>observe_GSCoL.txt</strong>: observed/foreground GSCoL</li>
+<li>  <strong>obs_uv.txt</strong>: u,v vectors from sCCA</li>
+<li>  <strong>null_GSCoL.txt</strong>: null/background GSCoL</li>
+<li>  <strong>output_pvalue_fdr.txt</strong>: results</li>
+</ul>
+
+<h2>
+<a id="publication" class="anchor" href="#publication" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Publication</h2>
+
+<ul>
+<li>Ting Wang, Jin Gu, Jun Yuan, Ran Tao, Yanda Li and Shao Li. Inferring pathway crosstalk networks using gene set co-expression signatures. <em>Molecular BioSystems</em> 2013, 9(7):1822-1888. PMID: 23591523.</li>
+</ul>
+
+<h2>
+<a id="contact" class="anchor" href="#contact" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Contact</h2>
+
+<p><a href="http://wt2015-github.github.io/">Ting Wang</a> (<a href="wang9ting@gmail.com">email</a>), <a href="http://bioinfo.au.tsinghua.edu.cn/member/jgu/">Jin Gu</a> (<a href="wellgoo@gmail.com">email</a>)</p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/wt2015-github/sGSCA">sGSCA</a> is maintained by <a href="https://github.com/wt2015-github">wt2015-github</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
