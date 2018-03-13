@@ -37,4 +37,4 @@ main(perm=10, fc.file="./data_exp.gse22058/fc_matrix.txt", geneset.file="./data_
 * Ting Wang, Jin Gu, Jun Yuan, Ran Tao, Yanda Li and Shao Li. Inferring pathway crosstalk networks using gene set co-expression signatures. *Molecular BioSystems* 2013, 9(7):1822-1888. PMID: 23591523.
 
 ## Contact
-[Ting Wang](http://wt2015-github.github.io/) ([email](wang9ting@gmail.com)), [Jin Gu](http://bioinfo.au.tsinghua.edu.cn/member/jgu/) ([email](wellgoo@gmail.com))
+[Ting Wang](http://wt2015-github.github.io/) (wang9ting@gmail.com), [Jin Gu](http://bioinfo.au.tsinghua.edu.cn/member/jgu/) (wellgoo@gmail.com)
